@@ -33,11 +33,20 @@
         o.onerror = null;
 
         var $target = $(this);
+
+        if($target.attr('x-style')){
+            var styleWH = $target.attr('x-style').match(/\d+/g);
+            $target.css({
+                width: styleWH[0],
+                height: styleWH[1]
+            });
+        }
         if($target.offset().top < pos){ //此图片已经被卷去
             $target.attr('src-cache', $target.attr('src9'));
             o.removeAttribute('src9');
             o.src = 'http://x.autoimg.cn/club/lazyload.png';
         }
+
 
         var tempBtn = btn.cloneNode(true);
         tempBtn.onclick = function() {
